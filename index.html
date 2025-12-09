@@ -19,13 +19,14 @@
     <!-- Process the login process -->
     <script>
         async function ftnLogin() {
-            
             event.preventDefault();                                     // prevent page refresh
+
+            try{
             const login_api = "http://127.0.0.1:8888/login";            // setup api endpoint
             
             const formData = {                                          // create obj. to be sent
                 "username": document.getElementById("username").value,    
-                "password": document.getElementById("password").value
+                "password": document.getElementById("password").value,
             };
 
             const response = await fetch(login_api, {                   // call the api
@@ -33,7 +34,23 @@
                 "headers": {"Content-Type": "application/json"},          // set header on the content to send
                 "body": JSON.stringify(formData),                         // send the form data
             });
+            
+            if(!response.ok){
+                if(response.status === 403)
+                    throw new Error("Permission denied.");
+                else if(response.status === 500)
+                    throw new Error("Internal Server error.");
+                else
+                    throw new Error("An unxpected error occured.");
+            }       
+            
+            const result = await response.json();
+            alert(result.msg);
+                
+        } catch (error){
+            alert(error.message);
         }
+    }
     </script>
 </body>
 </html>

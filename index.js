@@ -27,13 +27,23 @@ app.get("/", (req, res) => {   // Listen to GET request (root directory of the a
 
 app.get("/about", (req, res) => {
     res.statusCode = 200;        
-    const msg = "About this web iste.";
+    const msg = "About this web site.";
     res.send(msg);
 });
 
 // creating a new endpoint for login
 app.post("/login", (req, res) => {
-    console.log(req.body);
+  
+    const pseudoUsername = "user1";
+    const pseudoPassword = "pwd";
+
+    const { username, password } = req.body;
+
+     if(username === pseudoUsername && password === pseudoPassword)
+         return res.status(200).json({ msg: "you have logged in successfully" });
+
+     return res.status(403).json({ msg: "Permission denied. Please" });
+
     // const { username, password } = req.body;
     // console.log("received username:", username);
     // console.log("received passowrd:", password);
