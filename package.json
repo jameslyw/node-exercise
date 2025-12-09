@@ -1,0 +1,23 @@
+{
+  "name": "node-js-exercise",
+  "version": "1.0.0",
+  "description": "excercise using nodejs with express and axios dependencies",
+  "keywords": [
+    "express",
+    "axios"
+  ],
+  "license": "ISC",
+  "author": "James",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
